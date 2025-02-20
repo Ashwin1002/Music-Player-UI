@@ -136,15 +136,17 @@ class _MusicPlayerDetailViewState extends State<MusicPlayerDetailView> {
                       duration: _animationDuration,
                       child: Stack(
                         children: [
-                          Opacity(
-                            opacity: 1 - percent,
-                            child: MusicPlayerStickySheet(
-                              key: ValueKey<String>(
-                                'Now playing collapsed view',
+                          if (percent < .5)
+                            Opacity(
+                              opacity: 1 - percent,
+                              child: MusicPlayerStickySheet(
+                                key: ValueKey<String>(
+                                  'Now playing collapsed view',
+                                ),
+                                audioplayer: _audioPlayer,
                               ),
-                              audioplayer: _audioPlayer,
                             ),
-                          ),
+
                           Opacity(
                             opacity: percent,
                             child: NowPlaying(
